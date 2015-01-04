@@ -40,6 +40,12 @@ describe SQLObject do
       expect(c.respond_to? :owner_id).to be true
     end
 
+    it '::columns created getter methods read from attributes hash' do
+      c = Cat.new
+      c.instance_variable_set(:@attributes, {name: "Nick Diaz"})
+      expect(c.name).to eq 'Nick Diaz'
+    end
+
     it '::columns creates setter methods for each column' do
       c = Cat.new
       c.name = "Nick Diaz"
