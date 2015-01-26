@@ -1,4 +1,4 @@
-require 'active_record_lite/02_searchable'
+require '02_searchable'
 
 describe 'Searchable' do
   before(:each) { DBConnection.reset }
@@ -36,5 +36,9 @@ describe 'Searchable' do
     human = humans[0]
     expect(human.fname).to eq('Matt')
     expect(human.house_id).to eq(1)
+  end
+
+  it '#where returns [] if nothing matches the criteria' do
+    expect(Human.where(fname: 'Nowhere', lname: 'Man')).to eq([])
   end
 end

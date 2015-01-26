@@ -1,7 +1,7 @@
 require_relative '02_searchable'
 require 'active_support/inflector'
 
-# Phase IVa
+# Phase IIIa
 class AssocOptions
   attr_accessor(
     :foreign_key,
@@ -47,7 +47,7 @@ class HasManyOptions < AssocOptions
 end
 
 module Associatable
-  # Phase IVb
+  # Phase IIIb
   def belongs_to(name, options = {})
     assoc_options[name] = BelongsToOptions.new(name, options)
     
@@ -76,7 +76,11 @@ module Associatable
   end
 
   def assoc_options
+<<<<<<< HEAD:lib/active_record_lite/03_associatable.rb
     @assoc_options ||= {}
+=======
+    # Wait to implement this in Phase IVa. Modify `belongs_to`, too.
+>>>>>>> c5160b6f944d6087ae431e1310f98297a5d35bab:skeleton/lib/03_associatable.rb
   end
 end
 

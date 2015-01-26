@@ -1,7 +1,7 @@
 require_relative 'db_connection'
 require 'active_support/inflector'
-#NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
-#    of this project. It was only a warm up.
+# NB: the attr_accessor we wrote in phase 0 is NOT used in the rest
+# of this project. It was only a warm up.
 
 class SQLObject
   def self.columns #returns an array of the column names, class method
@@ -63,6 +63,7 @@ class SQLObject
     parse_all(select_one).first
   end
 
+<<<<<<< HEAD:lib/active_record_lite/01_sql_object.rb
   def attributes
     @attributes ||= {}
   end
@@ -97,6 +98,22 @@ class SQLObject
     else
       self.update
     end
+=======
+  def initialize(params = {})
+    # ...
+  end
+
+  def attributes
+    # ...
+  end
+
+  def attribute_values
+    # ...
+  end
+
+  def insert
+    # ...
+>>>>>>> c5160b6f944d6087ae431e1310f98297a5d35bab:skeleton/lib/01_sql_object.rb
   end
 
   def update
@@ -113,7 +130,12 @@ class SQLObject
     SQL
   end
 
+<<<<<<< HEAD:lib/active_record_lite/01_sql_object.rb
   def attribute_values
     self.class.columns.map {|column| self.send(column) }
+=======
+  def save
+    # ...
+>>>>>>> c5160b6f944d6087ae431e1310f98297a5d35bab:skeleton/lib/01_sql_object.rb
   end
 end

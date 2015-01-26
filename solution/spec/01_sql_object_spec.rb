@@ -1,4 +1,4 @@
-require 'active_record_lite/01_sql_object'
+require '01_sql_object'
 require 'securerandom'
 
 describe SQLObject do
@@ -38,6 +38,12 @@ describe SQLObject do
       expect(c.respond_to? :name).to be true
       expect(c.respond_to? :id).to be true
       expect(c.respond_to? :owner_id).to be true
+    end
+
+    it '::columns created getter methods read from attributes hash' do
+      c = Cat.new
+      c.instance_variable_set(:@attributes, {name: "Nick Diaz"})
+      expect(c.name).to eq 'Nick Diaz'
     end
 
     it '::columns creates setter methods for each column' do
@@ -93,7 +99,7 @@ describe SQLObject do
     it '::all returns all the cats' do
       cats = Cat.all
 
-      expect(cats.count).to eq(4)
+      expect(cats.count).to eq(5)
       cats.all? { |cat| expect(cat).to be_instance_of(Cat) }
     end
 
@@ -102,6 +108,10 @@ describe SQLObject do
 
       expect(c).not_to be_nil
       expect(c.name).to eq('Breakfast')
+    end
+
+    it '::find returns nil if no object has the given id' do
+      expect(Cat.find(123)).to be_nil
     end
   end
 
@@ -117,7 +127,7 @@ describe SQLObject do
     end
 
     it '#insert inserts a new record' do
-      expect(Cat.all.count).to eq(5)
+      expect(Cat.all.count).to eq(6)
     end
 
     it '#insert sets the id' do
